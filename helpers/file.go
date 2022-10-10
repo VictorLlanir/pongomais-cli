@@ -3,6 +3,7 @@ package helpers
 import (
 	"bufio"
 	"log"
+	"main/models"
 	"os"
 	"runtime"
 )
@@ -16,6 +17,10 @@ func GetConfigFolderPath() string {
 	return os.Getenv("HOME")
 }
 
+func GetConfigFilePath() string {
+	return GetConfigFolderPath() + "\\config.txt"
+}
+
 // Cria o diretório informado
 func CreateDirectory(directoryPath string) {
 	if err := os.Mkdir(directoryPath, os.ModePerm); err != nil {
@@ -26,6 +31,10 @@ func CreateDirectory(directoryPath string) {
 // Criar o arquivo no caminho informado, gravando os dados
 func CreateFile(filePath string, lines []string) {
 	f, err := os.Create(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	defer f.Close()
 
 	if err != nil {
@@ -43,4 +52,30 @@ func CreateFile(filePath string, lines []string) {
 	if err := buffer.Flush(); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func ReadConfigurationFile(filePath string) models.Configuration {
+	file, err := os.Open(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	var lines []string
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	configuration := models.Configuration{
+		Username:  lines[0],
+		Password:  lines[1],
+		Address:   lines[2],
+		Longitude: lines[3],
+		Latitude:  lines[4],
+	}
+
+	return configuration
 }

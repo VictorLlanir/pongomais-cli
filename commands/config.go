@@ -34,5 +34,4 @@ func getConfigCommandFlags() []cli.Flag {
 // Executa a ação de configuração
 func configCommandAction(c *cli.Context) {
 	actions.Configure(c)
-
 }

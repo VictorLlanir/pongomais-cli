@@ -1,8 +1,8 @@
 package commands
 
 import (
-	"main/helpers"
-	"main/models"
+	"main/actions"
+	"time"
 
 	"github.com/urfave/cli"
 )
@@ -29,7 +29,10 @@ func getCommandFlags() []cli.Flag {
 }
 
 func configGetAction(c *cli.Context) {
-	configFilePath := helpers.GetConfigFilePath()
-	configuration := helpers.ReadConfigurationFile(configFilePath)
-	helpers.Authenticate(models.Credentials{Login: configuration.Username, Password: configuration.Password})
+	day := c.String("day")
+	if day == "" {
+		day = time.Now().Format("2006-01-02")
+	}
+
+	actions.Get(day, c)
 }

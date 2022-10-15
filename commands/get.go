@@ -18,6 +18,7 @@ func BuildGetCommand() cli.Command {
 	}
 }
 
+// Retorna as flags do comando pg get
 func getCommandFlags() []cli.Flag {
 	return []cli.Flag{
 		cli.StringFlag{
@@ -28,6 +29,7 @@ func getCommandFlags() []cli.Flag {
 	}
 }
 
+// Executa a ação do comando pg get
 func configGetAction(c *cli.Context) {
 	day := c.String("day")
 	if day == "" {

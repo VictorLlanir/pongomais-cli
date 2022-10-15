@@ -15,8 +15,7 @@ import (
 func Get(day string, c *cli.Context) {
 	workdayUrl := helpers.URL + "/time_card_control/current/work_days/" + day
 
-	configFilePath := helpers.GetConfigFilePath()
-	configuration := helpers.ReadConfigurationFile(configFilePath)
+	configuration := helpers.ReadConfigurationFile()
 	credentials, _ := helpers.Authenticate(models.Credentials{Login: configuration.Username, Password: configuration.Password})
 
 	request := gorequest.New()
@@ -54,7 +53,7 @@ func Get(day string, c *cli.Context) {
 	fmt.Println("+---------------+---------------+---------------+")
 }
 
-// Retornar o tipo de dados: Entrada ou Saída
+// Retornar o tipo do registro: Entrada ou Saída
 func formatEntryType(index int) string {
 	if index%2 == 0 {
 		return "Entrada"

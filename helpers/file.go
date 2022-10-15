@@ -17,7 +17,7 @@ func GetConfigFolderPath() string {
 	return os.Getenv("HOME")
 }
 
-func GetConfigFilePath() string {
+func getConfigFilePath() string {
 	return GetConfigFolderPath() + "\\config.txt"
 }
 
@@ -54,8 +54,8 @@ func CreateFile(filePath string, lines []string) {
 	}
 }
 
-func ReadConfigurationFile(filePath string) models.Configuration {
-	file, err := os.Open(filePath)
+func ReadConfigurationFile() models.Configuration {
+	file, err := os.Open(getConfigFilePath())
 	if err != nil {
 		log.Fatal(err)
 	}

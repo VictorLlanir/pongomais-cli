@@ -28,7 +28,7 @@ func Authenticate(c models.Credentials) (models.Credentials, error) {
 
 	var err error
 	if len(errs) > 0 {
-		log.Println("[ERROR] Falhou autenticando na api do pontomais.")
+		log.Println("[ERRO] Falhou autenticando na api do pontomais.")
 		return c, err
 	}
 

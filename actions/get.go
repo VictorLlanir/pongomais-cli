@@ -30,7 +30,7 @@ func Get(day string, c *cli.Context) {
 		End()
 
 	if len(errs) > 0 {
-		log.Println("[ERROR] Falhou autenticando na api do pontomais.")
+		log.Println("[ERRO] Falhou autenticando na api do pontomais.")
 	}
 
 	var times models.Times

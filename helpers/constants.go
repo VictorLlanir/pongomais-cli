@@ -1,3 +1,3 @@
 package helpers
 
-const URL = "http://api.pontomaisweb.com.br/api"
+const URL = "https://api.pontomais.com.br/api"

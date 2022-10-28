@@ -20,8 +20,6 @@ func Configure(c *cli.Context) {
 	configFolderPath := helpers.GetConfigFolderPath()
 	configFilePath := configFolderPath + "\\config.txt"
 
-	fmt.Println()
-
 	if _, err := os.Stat(configFolderPath); os.IsNotExist(err) {
 		fmt.Println("Criando diretório...")
 		helpers.CreateDirectory(configFolderPath)
